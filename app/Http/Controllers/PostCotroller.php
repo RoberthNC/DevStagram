@@ -12,7 +12,7 @@ class PostCotroller extends Controller
 
     public function __construct()
     {
-        $this->middleware("auth");   
+        $this->middleware("auth")->except(["show","index"]);   
     }
 
     public function index(User $user)
@@ -53,5 +53,12 @@ class PostCotroller extends Controller
         ]);
 
         return redirect()->route("posts.index", auth()->user()->username);
+    }
+
+    public function show(User $user, Post $post){
+        return view("posts.show",[
+            "post" => $post,
+            "user" => $user
+        ]);
     }
 }
