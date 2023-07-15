@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LoginController;
@@ -48,3 +49,7 @@ Route::post("/posts/{post}/like",[LikeController::class,'store'])->name("posts.l
 Route::delete("/posts/{post}/like",[LikeController::class,'destroy'])->name("posts.likes.destroy");
 
 Route::get("/{user:username}",[PostCotroller::class, 'index'])->name("posts.index");
+
+Route::post("/{user:username}/follow",[FollowerController::class,'store'])->name("users.follow");
+Route::delete("/{user:username}/unfollow",[FollowerController::class,'destroy'])->name("users.unfollow");
+
